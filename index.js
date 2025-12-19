@@ -17,6 +17,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { promises as fs } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { format } from 'util';
 
 // Import operator data manager
 import OperatorDataManager from './wiki/operator-data-manager.js';
@@ -35,6 +36,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 // TODO: Wiki system integration - patterns path will be handled by wiki system
 const PATTERNS_PATH = join(__dirname, 'data', 'patterns.json'); // Keep for now, will integrate with wiki
+
+// Route logs to stderr so stdio MCP responses stay clean.
+const logToStderr = (...args) => {
+  process.stderr.write(`${format(...args)}\n`);
+};
+console.log = logToStderr;
+console.info = logToStderr;
 
 // Load package.json to get version
 const packageJson = JSON.parse(await fs.readFile(join(__dirname, 'package.json'), 'utf-8'));
