@@ -1,4 +1,4 @@
-# MCP Architecture Documentation
+# MCP Architecture Documentation (Codex CLI Edition)
 
 ## Table of Contents
 
@@ -17,12 +17,12 @@
 
 ### What is MCP (Model Context Protocol)?
 
-The Model Context Protocol is a standard for connecting AI assistants (like Claude) with external tools and data sources. MCP servers expose functionality through a standardized interface that can be consumed by MCP-compatible clients in VS Code/Codium.
+The Model Context Protocol is a standard for connecting AI assistants (like Codex CLI) with external tools and data sources. MCP servers expose functionality through a standardized interface that can be consumed by MCP-compatible clients.
 
 ### Core Concepts
 
 - **MCP Server**: A service that exposes tools and resources via the MCP protocol
-- **MCP Client**: An application (like VS Code with Claude) that connects to MCP servers
+- **MCP Client**: An application (like Codex CLI) that connects to MCP servers
 - **Transport**: Communication method (stdio, WebSocket, HTTP)
 - **Tools**: Functions exposed by the server that can be invoked by the client
 - **Resources**: Data sources that can be accessed by the client
@@ -43,7 +43,7 @@ The Model Context Protocol is a standard for connecting AI assistants (like Clau
 **Use Case**: Providing reference documentation and search capabilities
 
 ```
-VS Code/Claude <--stdio--> MCP Server <--local files--> Documentation Data
+Codex CLI <--stdio--> MCP Server <--local files--> Documentation Data
 ```
 
 **Characteristics**:
@@ -59,7 +59,7 @@ VS Code/Claude <--stdio--> MCP Server <--local files--> Documentation Data
 **Use Case**: Controlling external applications
 
 ```
-VS Code/Claude <--stdio--> MCP Server <--WebSocket--> Application Bridge <--API--> Application
+Codex CLI <--stdio--> MCP Server <--WebSocket--> Application Bridge <--API--> Application
 ```
 
 **Characteristics**:
@@ -76,7 +76,7 @@ VS Code/Claude <--stdio--> MCP Server <--WebSocket--> Application Bridge <--API-
 
 ```
                    ┌─> Documentation Data
-VS Code/Claude <--stdio--> MCP Server <
+Codex CLI <--stdio--> MCP Server <
                    └─> WebSocket --> Application
 ```
 
@@ -92,7 +92,7 @@ VS Code/Claude <--stdio--> MCP Server <
 
 ### Overview
 
-A pure MCP server providing comprehensive TouchDesigner documentation, operator information, and tutorials directly in VS Code/Codium.
+A pure MCP server providing comprehensive TouchDesigner documentation, operator information, and tutorials directly in Codex CLI.
 
 ### Architecture
 
@@ -118,7 +118,7 @@ td-mcp/
 ### Key Features
 
 - **629 TouchDesigner Operators**: Complete documentation
-- **553 Python API Classes**: Full scripting reference
+- **69 Python API Classes**: Full scripting reference
 - **14 Interactive Tutorials**: Learning guides
 - **Direct Search Implementation**: Reliable search without indexing
 - **Zero Configuration**: Works immediately after installation
@@ -163,12 +163,15 @@ performDirectSearch(query, options) {
 npm install -g @bottobot/td-mcp
 ```
 
-#### VS Code Configuration
+#### Codex CLI Configuration
+Add the MCP server to your Codex CLI configuration (for example, `~/.codex/config.json`):
 ```json
 {
-  "td-mcp": {
-    "command": "npx",
-    "args": ["@bottobot/td-mcp"]
+  "mcpServers": {
+    "td-mcp": {
+      "command": "npx",
+      "args": ["@bottobot/td-mcp"]
+    }
   }
 }
 ```
@@ -201,7 +204,7 @@ td-control-mcp/
 ### Communication Flow
 
 ```
-1. VS Code/Claude sends MCP tool request
+1. Codex CLI sends MCP tool request
 2. MCP Server translates to WebSocket message
 3. TD Bridge receives and executes in TouchDesigner
 4. Response flows back through the chain
@@ -313,7 +316,7 @@ td_connect_ops({ out: "/project1/noise1", into: "/project1/comp1" })
 ### Transport Mechanisms
 
 #### Stdio Transport
-- Used for MCP server ↔ VS Code communication
+- Used for MCP server ↔ Codex CLI communication
 - Synchronous request/response
 - JSON-RPC style messaging
 - Built into MCP protocol
@@ -389,7 +392,7 @@ try {
 ### Pattern 1: Documentation-Driven Development
 
 ```
-User Query → Claude → TD-MCP → Documentation → Response → Code Generation
+User Query → Codex CLI → TD-MCP → Documentation → Response → Code Generation
 ```
 
 **Use Case**: Learning about operators while coding
@@ -397,7 +400,7 @@ User Query → Claude → TD-MCP → Documentation → Response → Code Generat
 ### Pattern 2: Interactive Control
 
 ```
-User Command → Claude → TD-Control-MCP → WebSocket → TouchDesigner → Visual Output
+User Command → Codex CLI → TD-Control-MCP → WebSocket → TouchDesigner → Visual Output
 ```
 
 **Use Case**: Building networks through natural language
@@ -415,7 +418,7 @@ Control Command → TD-Control-MCP → TouchDesigner Action
 ### Pattern 4: Validation Pipeline
 
 ```
-User Code → Claude → TD-MCP (validate) → TD-Control-MCP (execute) → Result
+User Code → Codex CLI → TD-MCP (validate) → TD-Control-MCP (execute) → Result
 ```
 
 **Use Case**: Validate parameters before execution
@@ -508,8 +511,8 @@ server.addTool('tool_name', toolDefinition, handleToolName);
 - **Check**: Run `npm install` to ensure dependencies
 - **Check**: Verify data files exist in wiki/data/
 
-**Issue**: VS Code can't connect
-- **Check**: MCP configuration in VS Code settings
+**Issue**: Codex CLI can't connect
+- **Check**: MCP configuration in Codex CLI settings
 - **Check**: Server path is correct
 - **Check**: No port conflicts
 
@@ -541,7 +544,7 @@ npx @bottobot/td-mcp
 # Should show:
 # Loaded 629 operators
 # Loaded 14 tutorials
-# Loaded 553 Python API classes
+# Loaded 69 Python API classes
 ```
 
 #### Test TD Control MCP
@@ -592,7 +595,7 @@ def log_debug(msg):
 
 ## Conclusion
 
-The MCP architecture provides a robust foundation for integrating TouchDesigner with AI assistants. The separation between documentation (TD-MCP) and control (TD-Control-MCP) servers allows for:
+The MCP architecture provides a robust foundation for integrating TouchDesigner with Codex CLI. The separation between documentation (TD-MCP) and control (TD-Control-MCP) servers allows for:
 
 1. **Modularity**: Use either or both servers as needed
 2. **Stability**: Documentation queries don't affect control operations

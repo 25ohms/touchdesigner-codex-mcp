@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // TD-MCP v2 - Pure MCP TouchDesigner Documentation Server
-// Following Claude.md principles: POC first, no premature abstraction
+// Simple, modular structure for Codex CLI MCP usage
 // Phase 5: Code Organization - Modular structure
 //
 // TODO: WIKI SYSTEM INTEGRATION REQUIRED
@@ -140,8 +140,8 @@ server.registerTool(
 async function main() {
   console.log(`TD-MCP v${VERSION} Server Starting...`);
   console.log('================================');
-  console.log('TouchDesigner MCP Server for VS Code/Codium');
-  console.log('Following Claude.md principles: Keep it simple');
+  console.log('TouchDesigner MCP Server for Codex CLI');
+  console.log('Keep it simple: pure MCP server, no WebSocket complexity');
   console.log('Pure MCP server - no WebSocket complexity\n');
 
   try {

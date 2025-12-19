@@ -1,5 +1,5 @@
 // TD-MCP v2.0 - Suggest Workflow Tool
-// Simple tool implementation following Claude.md principles
+// Simple tool implementation for Codex CLI MCP usage
 
 import { z } from "zod";
 

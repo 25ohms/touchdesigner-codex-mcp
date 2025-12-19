@@ -144,7 +144,7 @@ This patch release fixes the critical issue where Python API tools returned no r
 - 14 comprehensive tutorials
 - Smart contextual search
 - Zero-configuration setup
-- VS Code/Codium integration
+- MCP client integration (Codex CLI compatible)
 
 ### Changed
 - Architecture from standalone app to MCP server
@@ -202,7 +202,7 @@ Major architecture change from standalone application to MCP server:
 
 1. Uninstall the old standalone application
 2. Install via npm: `npm install -g @bottobot/td-mcp`
-3. Configure in VS Code MCP settings
+3. Configure in Codex CLI MCP settings
 4. Remove old configuration files (no longer needed)
 
 ---

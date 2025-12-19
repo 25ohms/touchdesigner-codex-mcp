@@ -1,11 +1,13 @@
-# TouchDesigner MCP Server
+Fork notice: This repository is a fork of https://github.com/bottobot/touchdesigner-mcp-server by Robert Spring (bottobot). All original credit belongs to the original author.
+
+# TouchDesigner MCP Server for Codex CLI
 
 [![npm version](https://img.shields.io/npm/v/@bottobot/td-mcp.svg)](https://www.npmjs.com/package/@bottobot/td-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A powerful Model Context Protocol (MCP) server that brings comprehensive TouchDesigner operator documentation and tutorials directly to your AI coding assistant! 🚀
 
-I personally use it with VS Code/Codium and the Roo Code Extension alongside my favorite LLMs like Claude Opus and GPT-5. While the server should theoretically work with other applications like Docker or Claude Desktop, I haven't thoroughly tested those integrations yet.
+I personally use it with Codex CLI as the MCP client. The server should also work with other MCP-compatible clients, but this fork focuses on Codex CLI workflows.
 
 **The Story So Far:** The catalyst for this project was simple — A few months ago I decided I wanted an AI tool that could develop visuals in TouchDesigner for me. I've been making some basic things in TD for awhile but it has one of the steepest learning curves of any creative software I've ever used. How nice would it be just to ask an LLM "Please make a 720p, animated in realtime, constantly evolving, reaction diffusion simulation in TouchDesigner." and then just have it spit one out? Super duper nice is the answer in my opinion. 
 
@@ -49,25 +51,27 @@ npm install @bottobot/td-mcp
 
 ## Quick Start
 
-### Using with VS Code/Codium and Claude
+### Using with Codex CLI
 
 1. **Install the MCP server globally:**
    ```bash
    npm install -g @bottobot/td-mcp
    ```
 
-2. **Configure Claude/MCP in VS Code:**
-   Add the server to your MCP settings configuration file:
+2. **Configure Codex CLI MCP servers:**
+   Add the server to your Codex CLI configuration (for example, `~/.codex/config.json`):
    ```json
    {
-     "td-mcp": {
-       "command": "npx",
-       "args": ["@bottobot/td-mcp"]
+     "mcpServers": {
+       "td-mcp": {
+         "command": "npx",
+         "args": ["@bottobot/td-mcp"]
+       }
      }
    }
    ```
 
-3. **Start using TouchDesigner tools** in your conversations with Claude!
+3. **Start using TouchDesigner tools** in Codex CLI.
 
 ### Running Standalone
 
@@ -267,7 +271,7 @@ td-mcp/
 
 - Node.js 18.0 or higher
 - npm or yarn package manager
-- VS Code/Codium with MCP-compatible extension (e.g., Claude Dev)
+- Codex CLI with MCP support
 
 ## Development
 

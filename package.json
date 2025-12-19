@@ -1,14 +1,15 @@
 {
-  "name": "@bottobot/td-mcp",
+  "name": "@25ohms/td-mcp-codex",
   "version": "2.6.1",
-  "description": "TouchDesigner Documentation MCP Server v2.6.1 - FIXED Python API tools! Features 629 operators + 14 tutorials + 69 Python API classes with working get_python_api & search_python_api tools. Previous v2.6.0 fixes: working operator search, cleaner architecture (OperatorDataManager), direct search implementation. Zero-configuration setup for VS Code/Codium.",
+  "description": "TouchDesigner Documentation MCP Server for CODEX- Forked from @bottobot (Credits to him as well for the MCP Server in the first place).",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "td-mcp": "./index.js"
+    "td-mcp-codex": "./index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node --test"
   },
   "keywords": [
     "mcp",
@@ -28,16 +29,16 @@
     "comp",
     "pop"
   ],
-  "author": "Robert Spring",
+  "author": "Sahal Sajeer Kalandan",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bottobot/touchdesigner-mcp-server.git"
+    "url": "https://github.com/25ohms/touchdesigner-codex-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/bottobot/touchdesigner-mcp-server/issues"
+    "url": "https://github.com/25ohms/touchdesigner-codex-mcp/issues"
   },
-  "homepage": "https://github.com/bottobot/touchdesigner-mcp-server#readme",
+  "homepage": "https://github.com/25ohms/touchdesigner-codex-mcp#readme",
   "files": [
     "index.js",
     "tools/",
